@@ -1,0 +1,54 @@
+server:
+  port: 8024
+
+management:
+  security:
+    flag: false
+  server:
+    port: 8025
+  metrics:
+    prometheus:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+
+logging:
+  level:
+    "liquibase": info
+
+spring:
+  application:
+    name: '@project.name@'
+    output:
+      ansi:
+        enabled: always
+  kafka:
+    bootstrap-servers: localhost:9092
+
+overmind:
+  ke-topic-name: raw-ke-fetch-stream
+
+clickhouse:
+  url: "jdbc:clickhouse://localhost:8123/default"
+  user: "user"
+  password: "password"
+  connection.timeout: 50000
+  compress: false
+  liquibase:
+    change-log: "classpath:db/changelog/db.ch.changelog-main.yml"
+
+postgresql:
+  url: '@db.pg.url@'
+  user: '@db.pg.user@'
+  password: '@db.pg.password@'
+  liquibase:
+    change-log: "classpath:db/changelog/db.pg.changelog-main.yml"
