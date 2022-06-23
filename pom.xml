@@ -5,7 +5,7 @@
     <parent>
         <groupId>dev.crashteam</groupId>
         <artifactId>service-parent-pom</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.2</version>
     </parent>
     <artifactId>overmind</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -19,7 +19,6 @@
         <db.pg.user>postgres</db.pg.user>
         <db.pg.password>postgres</db.pg.password>
         <db.pg.name>overmind</db.pg.name>
-        <db.pg.schema>ovm</db.pg.schema>
         <db.pg.url>jdbc:postgresql://localhost:${db.pg.port}/${db.pg.name}</db.pg.url>
     </properties>
     <dependencies>
