@@ -3,6 +3,7 @@ package dev.crashteam.overmind.service
 import dev.crashteam.overmind.converter.ch.model.ChKazanExpressProductConverterResult
 import dev.crashteam.overmind.converter.thrift.model.KazanExpressBrandFetch
 import dev.crashteam.overmind.converter.thrift.model.KazanExpressProductFetch
+import dev.crashteam.overmind.dao.CHBrandRepository
 import dev.crashteam.overmind.dao.CHProductRepository
 import dev.crashteam.overmind.dao.model.ChKazanExpressBrand
 import dev.crashteam.overmind.dao.model.ChKazanExpressProduct
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service
 @Service
 class KazanExpressDataService(
     private val chProductRepository: CHProductRepository,
+    private val chBrandRepository: CHBrandRepository,
     private val conversionService: ConversionService
 ) {
 
@@ -27,7 +29,7 @@ class KazanExpressDataService(
         val brands = fetchs.map { brand ->
             conversionService.convert(brand, ChKazanExpressBrand::class.java)!!
         }
-        chProductRepository
+        chBrandRepository.saveBrands(brands)
     }
 
 }
