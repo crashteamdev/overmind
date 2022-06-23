@@ -1,8 +1,10 @@
 package dev.crashteam.overmind.service
 
 import dev.crashteam.overmind.converter.ch.model.ChKazanExpressProductConverterResult
+import dev.crashteam.overmind.converter.thrift.model.KazanExpressBrandFetch
 import dev.crashteam.overmind.converter.thrift.model.KazanExpressProductFetch
 import dev.crashteam.overmind.dao.CHProductRepository
+import dev.crashteam.overmind.dao.model.ChKazanExpressBrand
 import dev.crashteam.overmind.dao.model.ChKazanExpressProduct
 import org.springframework.core.convert.ConversionService
 import org.springframework.core.convert.TypeDescriptor
@@ -19,6 +21,13 @@ class KazanExpressDataService(
             conversionService.convert(product, ChKazanExpressProductConverterResult::class.java)!!.result
         }
         chProductRepository.saveProducts(products)
+    }
+
+    fun saveBrands(fetchs: List<KazanExpressBrandFetch>) {
+        val brands = fetchs.map { brand ->
+            conversionService.convert(brand, ChKazanExpressBrand::class.java)!!
+        }
+        chProductRepository
     }
 
 }
